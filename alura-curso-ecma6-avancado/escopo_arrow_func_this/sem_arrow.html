@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>SEM ARROW FUNCTION</title>
+</head>
+<body>
+
+    <h1>SEM ARROW FUNCTION</h1>
+    <p>PARAGRAFO</p>
+    <div>DADOS</div>
+
+    <sub>clique em cada item acima para testar!</sub>
+
+    <script>
+        console.log(this); // é window
+
+        let exibeConteudo = function() {
+            console.log(this);
+            alert(this.textContent);
+        };
+
+        $ = document.querySelector.bind(document);
+
+        $('h1').addEventListener('click', exibeConteudo);
+
+        $('p').addEventListener('click', exibeConteudo);
+
+        $('div').addEventListener('click', exibeConteudo);
+
+    </script>
+</body>
+</html>

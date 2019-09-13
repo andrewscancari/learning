@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exemplo timer</title>
+</head>
+<body>
+    <p>
+        Segundos desde a criação da instancia da Classe Relogio:
+        <span id="display"></span>
+    </p>
+</body>
+</html>
+
+<script>
+    class Relogio {
+        constructor() {
+            this._segundos = 0;
+            this._elemento = document.querySelector('#display');
+            setInterval(() => this._elemento.innerText = ++this._segundos, 1000);
+        }
+    }
+
+    var relogio = new Relogio();
+</script>
