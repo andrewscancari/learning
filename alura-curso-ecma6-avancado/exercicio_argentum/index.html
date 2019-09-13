@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script src="js/Utils.js"></script>
+    <script src="js/Funcionario.js"></script>
+    <script src="js/FuncionarioView.js"></script>
+    <script>
+        let funcionarios = [
+            {
+                "nome": "Douglas",
+                "endereco" : "Rua da esquina, 123",
+                "salario" : "4500"
+            },
+            {
+                "nome": "Felipe",
+                "endereco" : "Rua da virada, 456",
+                "salario" : "5000"
+            },
+            {
+                "nome": "Silvio",
+                "endereco" : "Rua da aresta, 789",
+                "salario" : "6000"
+            }
+        ];
+
+        let funcionarioView = new FuncionarioView($('body'));
+        funcionarioView.adiciona(funcionarios.map(f => new Funcionario(f.nome, f.endereco, f.salario)));
+        
+    </script>
+</body>
+</html>
