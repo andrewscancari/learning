@@ -12,6 +12,7 @@ class NegociacaoController {
                 if(['adiciona', 'esvazia'].includes(prop) && typeof(target[prop]) == 'function') {
                     return function() {
                         console.log(`interceptando ${prop}`);
+                        self._negociacoesView.update(target);
                         Reflect.apply(target[prop], target, arguments);
 
                         self._negociacoesView.update(target);
