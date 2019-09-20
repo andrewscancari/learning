@@ -1,8 +1,7 @@
-class NegociacoesView extends View<Negociacoes> {
-    update(model: Negociacoes): void {
-        this._elemento.html(this.template(model));
-    }
+import { View } from './View';
+import { Negociacoes } from '../models/Negociacoes';
 
+export class NegociacoesView extends View<Negociacoes> {
     template(model: Negociacoes): string {
         return `
         <table class="table table-hover table-bordered">
