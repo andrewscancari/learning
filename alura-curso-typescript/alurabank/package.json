@@ -5,12 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "compile": "tsc",
+    "build": "tsc && npm run minify",
+    "minify": "uglifyjs --beautify --ecma6 --output app/js/scripts.min.js -- app/js/app.js app/js/controllers/NegociacaoController.js",
     "start": "tsc -w"
   },
   "author": "Andrew",
   "license": "ISC",
   "devDependencies": {
-    "typescript": "^2.3.2"
+    "@types/jquery": "^2.0.42",
+    "typescript": "^2.3.2",
+    "uglify-es": "^3.3.9"
   }
 }
