@@ -1,6 +1,8 @@
 import { Negociacao, Negociacoes, NegociacaoParcial } from '../models/index';
 import { NegociacoesView, MensagemView } from '../views/index';
-import { logarTempoDeExecucao, domInject, meuDecoratorDeClasse } from "../helpers/decorators/index";
+import { logarTempoDeExecucao, domInject, meuDecoratorDeClasse, throttle } from "../helpers/decorators/index";
+import { NegociacaoService, HandlerFunction } from "../services/index";
+import { imprime } from '../helpers/index';
 
 @meuDecoratorDeClasse()
 export class NegociacaoController {
@@ -16,14 +18,15 @@ export class NegociacaoController {
     private _negociacoesView = new NegociacoesView('#negociacoesView');
     private _mensagemView = new MensagemView('#mensagemView');
 
+    private _negociacaoService = new NegociacaoService();
+
     constructor() {
         this._negociacoesView.update(this._negociacoes);
     }
 
     @logarTempoDeExecucao()
-    adiciona(event:Event): void {
-        event.preventDefault();
-
+    @throttle(50)
+    adiciona(): void {
         const negociacao = new Negociacao (
             new Date(this._inputData.val().replace(/-/g, ',')),
             parseInt(this._inputQuantidade.val()),
@@ -36,33 +39,47 @@ export class NegociacaoController {
             return;
         }
 
+        
         this._negociacoes.adiciona(negociacao);
         
+        imprime(negociacao, this._negociacoes);
         this._negociacoesView.update(this._negociacoes);
         this._mensagemView.update('Negociação adicionada com sucesso!');
     }
 
     @logarTempoDeExecucao()
-    importaDados() {
-        function isOk(res: Response) {
-            if(res.ok) {
-                return res;
-            } else {
-                throw new Error(res.statusText);
-            }
-        }
+    @throttle()
+    @throttle()
+    async importaDados() {
 
-        fetch('http://localhost:8080/dados')
-            .then(res => isOk(res))
-            .then(res => res.json())
-            .then((dados: NegociacaoParcial[]) => 
-                dados
-                    .map(dado => new Negociacao(new Date(), dado.vezes, dado.montante))
-                    .forEach(negociacao => {
-                        this._negociacoes.adiciona(negociacao);
-                        this._negociacoesView.update(this._negociacoes);
-                    })
-            ).catch(err => console.log(err));
+        try {
+
+           // usou await antes da chamada de this.service.obterNegociacoes()
+
+            const negociacoesParaImportar = await this._service
+                .obterNegociacoes(res => {
+
+                    if(res.ok) {
+                        return res;
+                    } else {
+                        throw new Error(res.statusText);
+                    }
+                });
+
+            const negociacoesJaImportadas = this._negociacoes.paraArray();
+
+            negociacoesParaImportar
+                .filter(negociacao => 
+                    !negociacoesJaImportadas.some(jaImportada => 
+                        negociacao.ehIgual(jaImportada)))
+                .forEach(negociacao => 
+                this._negociacoes.adiciona(negociacao));
+
+            this._negociacoesView.update(this._negociacoes);
+
+        } catch(err) {
+            this._mensagemView.update(err.message);
+        }
     }
 
     private _ehDiaUtil(data: Date) {

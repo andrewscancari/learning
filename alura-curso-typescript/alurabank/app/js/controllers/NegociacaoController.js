@@ -1,4 +1,4 @@
-System.register(["../models/index", "../views/index", "../helpers/decorators/index"], function (exports_1, context_1) {
+System.register(["../models/index", "../views/index", "../helpers/decorators/index", "../services/index", "../helpers/index"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -7,7 +7,7 @@ System.register(["../models/index", "../views/index", "../helpers/decorators/ind
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
     var __moduleName = context_1 && context_1.id;
-    var index_1, index_2, index_3, NegociacaoController, DiasDaSemana;
+    var index_1, index_2, index_3, index_4, index_5, NegociacaoController, DiasDaSemana;
     return {
         setters: [
             function (index_1_1) {
@@ -18,6 +18,12 @@ System.register(["../models/index", "../views/index", "../helpers/decorators/ind
             },
             function (index_3_1) {
                 index_3 = index_3_1;
+            },
+            function (index_4_1) {
+                index_4 = index_4_1;
+            },
+            function (index_5_1) {
+                index_5 = index_5_1;
             }
         ],
         execute: function () {
@@ -26,37 +32,36 @@ System.register(["../models/index", "../views/index", "../helpers/decorators/ind
                     this._negociacoes = new index_1.Negociacoes();
                     this._negociacoesView = new index_2.NegociacoesView('#negociacoesView');
                     this._mensagemView = new index_2.MensagemView('#mensagemView');
+                    this._negociacaoService = new index_4.NegociacaoService();
                     this._negociacoesView.update(this._negociacoes);
                 }
-                adiciona(event) {
-                    event.preventDefault();
+                adiciona() {
                     const negociacao = new index_1.Negociacao(new Date(this._inputData.val().replace(/-/g, ',')), parseInt(this._inputQuantidade.val()), parseFloat(this._inputValor.val()));
                     if (this._ehDiaUtil(negociacao.data)) {
                         this._mensagemView.update('Não são permitidas negociações aos finais de semana.');
                         return;
                     }
                     this._negociacoes.adiciona(negociacao);
+                    index_5.imprime(negociacao, this._negociacoes);
                     this._negociacoesView.update(this._negociacoes);
                     this._mensagemView.update('Negociação adicionada com sucesso!');
                 }
                 importaDados() {
-                    function isOk(res) {
+                    const isOk = (res) => {
                         if (res.ok) {
                             return res;
                         }
                         else {
                             throw new Error(res.statusText);
                         }
-                    }
-                    fetch('http://localhost:8080/dados')
-                        .then(res => isOk(res))
-                        .then(res => res.json())
-                        .then((dados) => dados
-                        .map(dado => new index_1.Negociacao(new Date(), dado.vezes, dado.montante))
-                        .forEach(negociacao => {
-                        this._negociacoes.adiciona(negociacao);
+                    };
+                    this._negociacaoService
+                        .obterNegociacoes(isOk)
+                        .then(negociacoesParaImportar => {
+                        const negociacoesJaImportadas = this._negociacoes.paraArray();
+                        negociacoesParaImportar.filter(negociacao => !negociacoesJaImportadas.some(jaImportada => negociacao.ehIgual(jaImportada))).forEach(negociacao => this._negociacoes.adiciona(negociacao));
                         this._negociacoesView.update(this._negociacoes);
-                    })).catch(err => console.log(err));
+                    }).catch(err => this._mensagemView.update('Não foi possivel importar as negociações'));
                 }
                 _ehDiaUtil(data) {
                     return data.getDay() == DiasDaSemana.domingo || data.getDay() == DiasDaSemana.sabado;
@@ -72,10 +77,12 @@ System.register(["../models/index", "../views/index", "../helpers/decorators/ind
                 index_3.domInject('#valor')
             ], NegociacaoController.prototype, "_inputValor", void 0);
             __decorate([
-                index_3.logarTempoDeExecucao()
+                index_3.logarTempoDeExecucao(),
+                index_3.throttle(50)
             ], NegociacaoController.prototype, "adiciona", null);
             __decorate([
-                index_3.logarTempoDeExecucao()
+                index_3.logarTempoDeExecucao(),
+                index_3.throttle()
             ], NegociacaoController.prototype, "importaDados", null);
             NegociacaoController = __decorate([
                 index_3.meuDecoratorDeClasse()

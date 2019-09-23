@@ -3,4 +3,4 @@ import { NegociacaoController } from "./controllers/NegociacaoController";
 const controller = new NegociacaoController();
 
 $('.form').submit(controller.adiciona.bind(controller));
-$('.form button').click(controller.importaDados.bind(controller));
+$('#importarDados').click(controller.importaDados.bind(controller));
