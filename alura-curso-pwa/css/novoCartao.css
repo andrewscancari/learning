@@ -1,3 +1,12 @@
+.novoCartao-label {
+	font-size: 1em;
+	text-align: center;
+    display: block;
+	margin-bottom: .4em;
+	font-family: "Lucida Grande", "Helvetica", "Arial", sans-serif;
+	font-weight: bold;
+}
+
 .novoCartao {
 	font-size: 1rem;
 	margin: 0 auto 2em;

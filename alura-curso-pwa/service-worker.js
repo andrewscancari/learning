@@ -1,4 +1,4 @@
-let swVersion = 10;
+let swVersion = 34;
 
 let cacheFiles = [
     "/",
@@ -51,7 +51,9 @@ self.addEventListener("install", function() {
 self.addEventListener("activate", function() {
     caches.open("ceep-arquivos-" + swVersion).then(cache => {
         cache.addAll(cacheFiles).then(function() {
-            caches.delete("ceep-arquivos-" + (swVersion - 1));
+            for(let i = 0 ; i < swVersion ; i++) {
+                caches.delete("ceep-arquivos-" + i);
+            }
         });
     });
 });

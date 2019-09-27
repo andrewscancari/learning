@@ -26,7 +26,8 @@
     padding: .5em;
 	max-width: 4.5em;
 	border: none;
-	background: #f05450;
+	background: blue;
 	color: white;
     margin-left: .5em;
+    font-weight: bold;
 }

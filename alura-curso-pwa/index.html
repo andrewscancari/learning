@@ -1,10 +1,31 @@
 <!DOCTYPE html>
-<html lang="pt-br" manifest="offline.manifest">
+<html lang="pt-br">
 <head>
 	<link rel="manifest" href="web-app-manifest.json">
 	<link href="img/icons/favicon.ico" rel="icon" type="image/x-icon" />
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width">
+	
+	<meta name="Description" content="Author: Andrew Aragão Scancari, Project: Progressive Web App">
+
+	<title>Ceep</title>
+</head>
+<body>
+  <header class="cabecalho container">
+    <h1 class="cabecalho-logo">
+      Ceep
+    </h1>
+    <!-- <div class="opcoesDaPagina">
+		<input type="search" placeholder="busca" id="busca" class="opcoesDaPagina-opcao">
+		<button id="mudaLayout" class="opcoesDaPagina-opcao opcoesDaPagina-botao">Linhas</button>
+    </div> -->
+  </header>
+	<form class="novoCartao container">
+		<label for="novoCartao" class="novoCartao-label">Preencha e clique em salvar</label>
+		<textarea id="novoCartao" class="novoCartao-conteudo" name="novoCartao-conteudo" placeholder="Digite aqui"></textarea>
+		<input class="novoCartao-salvar" type="submit" value="Salvar">
+	</form>
+
 	<link rel="stylesheet" href="css/estilos.css">
 	<link rel="stylesheet" href="css/opcoesDaPagina.css">
 	<link rel="stylesheet" href="css/opcoesDoCartao.css">
@@ -15,22 +36,7 @@
 	<link rel="stylesheet" href="css/cartao.css">
 	<link rel="stylesheet" href="css/novoCartao.css">
 	<link rel="stylesheet" href="css/mural.css">
-	<title>Ceep</title>
-</head>
-<body>
-  <header class="cabecalho container">
-    <h1 class="cabecalho-logo">
-      Ceep
-    </h1>
-    <div class="opcoesDaPagina">
-		<input type="search" placeholder="busca" id="busca" class="opcoesDaPagina-opcao">
-		<button id="mudaLayout" class="opcoesDaPagina-opcao opcoesDaPagina-botao">Linhas</button>
-    </div>
-  </header>
-	<form class="novoCartao container">
-		<textarea class="novoCartao-conteudo" name="novoCartao-conteudo" placeholder="Digite aqui"></textarea>
-		<input class="novoCartao-salvar" type="submit" value="Salvar">
-	</form>
+
 	<section class="container login"></section>
 	<section class="container mural"></section>
 	<script src="js/lib/jquery.js"></script>
