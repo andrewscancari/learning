@@ -8,11 +8,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { LayoutModule } from '@angular/cdk/layout';
 import { HttpClientModule } from '@angular/common/http';
 import { DasbhoardComponent } from './dashboard/dashboard.component';
+import { LoadPokemonDataDirective } from './dashboard/load-pokemon-data.directive';
 
 
 
 @NgModule({
-  declarations: [DasbhoardComponent],
+  declarations: [DasbhoardComponent, LoadPokemonDataDirective],
   imports: [
     CommonModule,
     MatGridListModule,

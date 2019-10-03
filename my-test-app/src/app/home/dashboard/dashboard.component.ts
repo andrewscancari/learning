@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { ActivatedRoute } from '@angular/router';
-import { PokemonListObject } from './pokemon-list.interface';
+import { iPokemonList } from './pokemon-list.interface';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,7 +10,7 @@ import { PokemonListObject } from './pokemon-list.interface';
   styleUrls: ['./dashboard.component.css']
 })
 export class DasbhoardComponent implements OnInit {
-  pokemonList: PokemonListObject;
+  pokemonList: iPokemonList;
 
   constructor(private breakpointObserver: BreakpointObserver, private activatedRoute: ActivatedRoute) {}
 
