@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { map, timeout, count } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
-import { HttpClient } from '@angular/common/http';
-import { PokemonListObject } from '../pokemon-list.interface';
-import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { PokemonListObject } from './pokemon-list.interface';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,15 +10,13 @@ import { Observable } from 'rxjs';
   styleUrls: ['./dashboard.component.css']
 })
 export class DasbhoardComponent implements OnInit {
+  pokemonList: PokemonListObject;
 
-  constructor(private breakpointObserver: BreakpointObserver, private httpClient: HttpClient) {}
-
-  pokemonList: [] = null;
+  constructor(private breakpointObserver: BreakpointObserver, private activatedRoute: ActivatedRoute) {}
 
   /** Based on the screen size, switch from standard to one column per row */
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
-      if(this.pokemonList) {
         if (matches) {
           return [
             { title: 'Card 1', cols: 2, rows: 1 },
@@ -35,21 +32,11 @@ export class DasbhoardComponent implements OnInit {
           { title: 'Card 3', cols: 1, rows: 1 },
           { title: 'Card 4', cols: 1, rows: 1 }
         ];
-      }
-
-      return null;
     })
   );
 
 
-  getPokemonList(): Observable<PokemonListObject> {
-    return this.httpClient.get('https://pokeapi.co/api/v2/pokemon?offset=0&limit=20') as Observable<PokemonListObject>;
-  }
-
-  ngOnInit() {
-    this.pokemonList = [];
-    this.getPokemonList().subscribe(resPokemon => {
-      console.log(resPokemon);
-    });
+  ngOnInit(): void {
+    this.pokemonList = this.activatedRoute.snapshot.data.pokemonList;
   }
 }
