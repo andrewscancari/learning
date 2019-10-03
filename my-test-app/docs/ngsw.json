@@ -1,0 +1,80 @@
+{
+  "configVersion": 1,
+  "timestamp": 1570110801915,
+  "index": "C:/Program Files/Git/learning/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "urls": [
+        "C:/Program Files/Git/learning/favicon.ico",
+        "C:/Program Files/Git/learning/index.html",
+        "C:/Program Files/Git/learning/main-es2015.0e577a7333f78761e1b9.js",
+        "C:/Program Files/Git/learning/main-es5.0e577a7333f78761e1b9.js",
+        "C:/Program Files/Git/learning/manifest.webmanifest",
+        "C:/Program Files/Git/learning/polyfills-es2015.d3e61f0dd2b58e518eca.js",
+        "C:/Program Files/Git/learning/polyfills-es5.f8b5a32bf736d11d106f.js",
+        "C:/Program Files/Git/learning/runtime-es2015.b948044840398824f16e.js",
+        "C:/Program Files/Git/learning/runtime-es5.b948044840398824f16e.js",
+        "C:/Program Files/Git/learning/styles.c6b946f03462004a8326.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "urls": [
+        "C:/Program Files/Git/learning/assets/icons/icon-128x128.png",
+        "C:/Program Files/Git/learning/assets/icons/icon-144x144.png",
+        "C:/Program Files/Git/learning/assets/icons/icon-152x152.png",
+        "C:/Program Files/Git/learning/assets/icons/icon-192x192.png",
+        "C:/Program Files/Git/learning/assets/icons/icon-384x384.png",
+        "C:/Program Files/Git/learning/assets/icons/icon-512x512.png",
+        "C:/Program Files/Git/learning/assets/icons/icon-72x72.png",
+        "C:/Program Files/Git/learning/assets/icons/icon-96x96.png"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "C:/Program Files/Git/learning/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
+    "C:/Program Files/Git/learning/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
+    "C:/Program Files/Git/learning/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
+    "C:/Program Files/Git/learning/assets/icons/icon-192x192.png": "1abd80d431a237a853ce38147d8c63752f10933b",
+    "C:/Program Files/Git/learning/assets/icons/icon-384x384.png": "329749cd6393768d3131ed6304c136b1ca05f2fd",
+    "C:/Program Files/Git/learning/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
+    "C:/Program Files/Git/learning/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
+    "C:/Program Files/Git/learning/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
+    "C:/Program Files/Git/learning/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
+    "C:/Program Files/Git/learning/index.html": "47a034c680e8a70471707b7ec48df3c862a2ac20",
+    "C:/Program Files/Git/learning/main-es2015.0e577a7333f78761e1b9.js": "d718f798eb35a533235b021d4207cabb97cd2b9e",
+    "C:/Program Files/Git/learning/main-es5.0e577a7333f78761e1b9.js": "94b8ed5f0888e889aa8a9304997f4bc30cfcd786",
+    "C:/Program Files/Git/learning/manifest.webmanifest": "8503bd786c8c53ffe5c6d02fe8223ee5a20f569c",
+    "C:/Program Files/Git/learning/polyfills-es2015.d3e61f0dd2b58e518eca.js": "e2f28c3743afd2899e140ad831df9675c233c02b",
+    "C:/Program Files/Git/learning/polyfills-es5.f8b5a32bf736d11d106f.js": "db091f7ef692a1d3add240459a2ea20c81cd6f19",
+    "C:/Program Files/Git/learning/runtime-es2015.b948044840398824f16e.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
+    "C:/Program Files/Git/learning/runtime-es5.b948044840398824f16e.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
+    "C:/Program Files/Git/learning/styles.c6b946f03462004a8326.css": "e44247179f7ff6c616439f6ad8e4e8acc146201a"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ]
+}
