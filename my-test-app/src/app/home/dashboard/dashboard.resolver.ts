@@ -9,6 +9,22 @@ export class DashboardResolver implements Resolve<iPokemonList> {
   constructor(private dashboardService: DashboardService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<iPokemonList> {
-    return this.dashboardService.pokemonList(1, 10);
+    const paramPage: number = (() => {
+      let p: number = route.queryParams.page || 1;
+      p = p < 1 ? 1 : p;
+
+      return p;
+    })();
+
+    const paramSize: number = (() => {
+      let size = route.queryParams.size || 10;
+
+      size = size < 1 ? 1 : size;
+      size = size > 100 ? 100 : size;
+
+      return size;
+    })();
+
+    return this.dashboardService.pokemonList(paramPage, paramSize);
   }
 }

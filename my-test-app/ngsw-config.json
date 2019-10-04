@@ -1,6 +1,18 @@
 {
   "$schema": "./node_modules/@angular/service-worker/config/schema.json",
   "index": "/index.html",
+  "dataGroups": [{
+      "name": "pokemon-api",
+      "version": 1,
+      "urls": ["https://pokeapi.co/api/v2/pokemon"],
+      "cacheConfig": {
+        "strategy": "performance",
+        "maxSize": 10000,
+        "maxAge": "1d",
+        "timeout": "2s"
+      }
+    }
+  ],
   "assetGroups": [
     {
       "name": "app",
@@ -12,7 +24,8 @@
           "/manifest.webmanifest",
           "/*.css",
           "/*.js"
-        ]
+        ],
+        "urls": ["https://fonts.googleapis.com/"]
       }
     }, {
       "name": "assets",
@@ -22,7 +35,8 @@
         "files": [
           "/assets/**",
           "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)"
-        ]
+        ],
+        "urls": ["https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites"]
       }
     }
   ]
