@@ -9,11 +9,15 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { HttpClientModule } from '@angular/common/http';
 import { DasbhoardComponent } from './dashboard/dashboard.component';
 import { LoadPokemonDataDirective } from './dashboard/load-pokemon-data.directive';
+import { TableViewComponent } from './table-view/table-view.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 
 
 @NgModule({
-  declarations: [DasbhoardComponent, LoadPokemonDataDirective],
+  declarations: [DasbhoardComponent, LoadPokemonDataDirective, TableViewComponent],
   imports: [
     CommonModule,
     MatGridListModule,
@@ -22,7 +26,10 @@ import { LoadPokemonDataDirective } from './dashboard/load-pokemon-data.directiv
     MatIconModule,
     MatButtonModule,
     LayoutModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   exports: [
     DasbhoardComponent

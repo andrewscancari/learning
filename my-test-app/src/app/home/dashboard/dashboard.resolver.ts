@@ -3,6 +3,7 @@ import { iPokemonList } from './pokemon-list.interface';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DashboardService } from './dashboard.service';
+import { environment } from './../../../environments/environment';
 
 @Injectable({  providedIn: 'root' })
 export class DashboardResolver implements Resolve<iPokemonList> {
@@ -19,8 +20,10 @@ export class DashboardResolver implements Resolve<iPokemonList> {
     const paramSize: number = (() => {
       let size = route.queryParams.size || 10;
 
+      console.log(environment);
+
       size = size < 1 ? 1 : size;
-      size = size > 100 ? 100 : size;
+      size = size > environment.maxPageSize ? environment.maxPageSize : size;
 
       return size;
     })();

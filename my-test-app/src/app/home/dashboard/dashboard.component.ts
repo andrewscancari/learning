@@ -11,32 +11,20 @@ import { iPokemonList } from './pokemon-list.interface';
 })
 export class DasbhoardComponent implements OnInit {
   pokemonList: iPokemonList;
+  cardCols = 1;
 
   constructor(private breakpointObserver: BreakpointObserver, private activatedRoute: ActivatedRoute) {}
 
-  /** Based on the screen size, switch from standard to one column per row */
-  cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
-    map(({ matches }) => {
-        if (matches) {
-          return [
-            { title: 'Card 1', cols: 2, rows: 1 },
-            { title: 'Card 2', cols: 2, rows: 1 },
-            { title: 'Card 3', cols: 2, rows: 1 },
-            { title: 'Card 4', cols: 2, rows: 1 }
-          ];
-        }
-
-        return [
-          { title: 'Card 1', cols: 1, rows: 1 },
-          { title: 'Card 2', cols: 1, rows: 1 },
-          { title: 'Card 3', cols: 1, rows: 1 },
-          { title: 'Card 4', cols: 1, rows: 1 }
-        ];
-    })
-  );
-
-
   ngOnInit(): void {
     this.pokemonList = this.activatedRoute.snapshot.data.pokemonList;
+
+    /** Based on the screen size, switch from standard to one column per row */
+    this.breakpointObserver.observe(Breakpoints.Handset).subscribe( state => {
+      if (state.matches) {
+        this.cardCols = 2;
+      } else {
+        this.cardCols = 1;
+      }
+    });
   }
 }
