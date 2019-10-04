@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DashboardService } from './dashboard.service';
+import { PokemonApiService } from './pokemon-api.service';
 
-describe('DashboardService', () => {
+describe('PokemonApiService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: DashboardService = TestBed.get(DashboardService);
+    const service: PokemonApiService = TestBed.get(PokemonApiService);
     expect(service).toBeTruthy();
   });
 });

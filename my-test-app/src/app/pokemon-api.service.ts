@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpParams, HttpClient } from '@angular/common/http';
-import { iPokemonList } from './pokemon-list.interface';
 import { Observable } from 'rxjs';
-import { iPokemonData } from './pokemon-data.interface';
+import { iPokemonList } from './dashboard/pokemon-list.interface';
+import { HttpParams, HttpClient } from '@angular/common/http';
+import { iPokemonData } from './dashboard/pokemon-data.interface';
 
 const API = 'https://pokeapi.co/api/v2/pokemon';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DashboardService {
+export class PokemonApiService {
 
   constructor(private httpClient: HttpClient) { }
 
