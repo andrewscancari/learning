@@ -1,16 +1,15 @@
 
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { UserNotTakenValidatorService } from './user-not-taken.validator.service';
 import { Observable } from 'rxjs';
 import { NewUser } from './user';
+import { environment } from 'src/environments/environment.prod';
 
-const API_URL = 'http://localhost:3000';
+const API_URL = environment.apiUrl;
 
 @Injectable({ providedIn: 'root' })
 export class SignUpService {
-  constructor(
-    private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {}
 
   checkUserNameTaken(userName: string): Observable<boolean> {
     return this.httpClient.get(`${API_URL}/user/exists/${userName}`) as Observable<boolean>;

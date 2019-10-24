@@ -4,6 +4,7 @@ import { AbstractControl, ValidatorFn } from '@angular/forms';
 import { debounceTime, switchMap, map, first } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
+@Injectable()
 export class UserNotTakenValidatorService {
   constructor(private signupService: SignUpService) { }
 
