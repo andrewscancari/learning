@@ -14,10 +14,12 @@ const routes: Routes = [
       {
         path: '',
         component: SignInComponent,
-        canActivate: [LoginGuard]
+        canActivate: [LoginGuard],
+        data: { title: 'Sign in' }
       }, {
         path: 'signup',
-        component: SignUpComponent
+        component: SignUpComponent,
+        data: { title: 'Sign up' }
       }
     ]
   }
